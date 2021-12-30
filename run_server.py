@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from .app.controller import home, radio_metadata
+from app.controller import home, radio_metadata
 
 
 server = Flask(__name__)
