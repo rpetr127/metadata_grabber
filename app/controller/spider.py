@@ -38,7 +38,7 @@ class MetadataSpider(CrawlSpider, ABC):
                 if self.radio_title in query_string:
                     self.item['title'] = query_string
                     query_string_2 = i.css('img').attrib['src']
-                    query_string_2 = re.sub(r'\.+[^\w\/\_]', '', query_string_2
+                    query_string_2 = re.sub(r'\.+[^\w\/\_]', '', query_string_2)
                     self.item['logo'] = MetadataSpider.allowed_domains[0] + query_string_2
                     return Request(lnk, callback=self.parse_stream_url)
                 if self.completed == True:
