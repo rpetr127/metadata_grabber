@@ -1,7 +1,7 @@
 import asyncio
 
-from metadata_grabber import app, request
-from metadata_grabber.controller import home, radio_metadata
+from app import app, request
+from app.controller import home, radio_metadata
 
 
 @app.route('/')

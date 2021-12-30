@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import metadata_grabber
+import app
 from setuptools import setup, find_packages
 
 
@@ -10,10 +10,10 @@ def install():
 
     setup(
         name='metadata_grabber',
-        version=metadata_grabber.__version__,
+        version=app.__version__,
         description='metadata_grabber website project',
         long_description=readme,
-        author=metadata_grabber.__author__,
+        author=app.__author__,
         license='MIT',
         platforms=['POSIX'],
         classifiers=[
