@@ -1,1 +1,1 @@
-web: 'gunicorn manager:main
+web: 'gunicorn run_server:server
