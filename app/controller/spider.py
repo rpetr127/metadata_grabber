@@ -1,18 +1,12 @@
 import re
-import time
 from abc import ABC
-import asyncio
 
-import requests
 from scrapy import Request
-from scrapy.exceptions import CloseSpider, IgnoreRequest
+from scrapy.exceptions import CloseSpider
 from scrapy.spiders import CrawlSpider, Rule, Request
-from scrapy.selector import Selector
-from scrapy.crawler import CrawlerRunner
-from .items import Article
 from scrapy.linkextractors import LinkExtractor
-from scrapy_puppeteer import PuppeteerRequest
-import asyncio
+
+from .items import Article
 # from twisted.internet import asyncioreactor
 #
 # asyncioreactor.install(asyncio.get_event_loop())
