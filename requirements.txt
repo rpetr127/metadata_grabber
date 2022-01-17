@@ -3,5 +3,6 @@ requests
 gunicorn
 scrapy
 crochet
+sqlite-utils
 lxml
 beautifulsoup4
