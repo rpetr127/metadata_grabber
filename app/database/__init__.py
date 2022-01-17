@@ -1,4 +1,4 @@
-from sqlite_utils import Database
+from app.sqlite_utils import Database
 
 db = Database('app/assets/metadata.db', check_same_thread=False)
 table = db['radiometadata']
