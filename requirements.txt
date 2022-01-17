@@ -1,5 +1,6 @@
 Flask[async]==2.0.2
 scrapy
+sqlite-utils
 crochet
 lxml
 beautifulsoup4
