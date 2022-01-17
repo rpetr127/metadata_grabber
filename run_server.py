@@ -1,16 +1,5 @@
-from flask import Flask, request
-
-from app.controller import home, radio_metadata
+from app import server
 
 
-server = Flask(__name__)
-
-
-@server.route('/')
-async def index():
-    if request.args.get('name'):
-        name = request.args.get('name')
-        metadata = await radio_metadata(name)
-        return metadata
-    else:
-        return home()
+if __name__ == '__main__':
+    server.run('127.0.0.1', 5050)

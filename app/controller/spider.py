@@ -1,12 +1,18 @@
 import re
+import time
 from abc import ABC
+import asyncio
 
+import requests
 from scrapy import Request
-from scrapy.exceptions import CloseSpider
+from scrapy.exceptions import CloseSpider, IgnoreRequest
 from scrapy.spiders import CrawlSpider, Rule, Request
-from scrapy.linkextractors import LinkExtractor
-
+from scrapy.selector import Selector
+from scrapy.crawler import CrawlerRunner
 from .items import Article
+from scrapy.linkextractors import LinkExtractor
+from scrapy_puppeteer import PuppeteerRequest
+import asyncio
 # from twisted.internet import asyncioreactor
 #
 # asyncioreactor.install(asyncio.get_event_loop())
@@ -34,12 +40,12 @@ class MetadataSpider(CrawlSpider, ABC):
         if not self.completed:
             for i in response.css('.fsta *'):
                 query_string = i.css('a::text').extract()[1].lower().strip()
+                self.item['title'] = query_string
+                query_string_2 = i.css('img').attrib['src']
+                query_string_2 = re.sub(r'\.+[^\w\/\_]', '', query_string_2)
+                self.item['logo'] = MetadataSpider.allowed_domains[0] + query_string_2
                 lnk = host_url + i.css('a').attrib['href'][2:]
                 if self.radio_title in query_string:
-                    self.item['title'] = query_string
-                    query_string_2 = i.css('img').attrib['src']
-                    query_string_2 = re.sub(r'\.+[^\w\/\_]', '', query_string_2)
-                    self.item['logo'] = MetadataSpider.allowed_domains[0] + query_string_2
                     return Request(lnk, callback=self.parse_stream_url)
                 if self.completed == True:
                     raise CloseSpider(reason='cancelled')
